@@ -74,9 +74,9 @@
 
 <Nav/>
 <div class="btns">
-  <Btn btn="raised square" on:click={() => {$goto('/home')}}>Back</Btn>
-  <Btn btn="raised fill square">Index</Btn>
-  <Btn btn="raised square">Fore</Btn>
+  <Btn btn="raised square" on:click={() => {$goto('/home')}}>Back</Btn
+  ><Btn btn="raised fill square">Index</Btn
+    ><Btn btn="raised square">Fore</Btn>
 </div>
 <br/><br/>
 <h1>Add itmord</h1>

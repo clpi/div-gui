@@ -147,7 +147,7 @@ li {
     </div>
     <div class="right">
       <li>
-        <Btn btn="raised fill">
+        <Btn btn="raised">
           Stats
         </Btn>
       </li>

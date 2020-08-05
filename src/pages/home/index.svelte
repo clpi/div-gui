@@ -1,5 +1,6 @@
 <script lang="ts">
   import * as dialog from 'tauri/api/dialog';
+  import Topbar from '../../comp/ui/topbar.svelte';
   import Nav from '../../comp/ui/nav.svelte';
   import { user, isLoggedIn } from '../../util/store.js';
   import { emit, listen } from 'tauri/api/event';
@@ -30,10 +31,7 @@
 </script>
 <style>
   h3 {
-    padding: 30px 5px 30px 5px;
-  }
-  h3 {
-    padding: 20px 5px 20px 5px;
+    padding: 10px 5px 10px 5px;
   }
   .home {
     display: block;
@@ -47,6 +45,23 @@
     font-weight: 300;
     text-shadow: 0.5px 1.5px 2.5px #000;
   }
+  .wrapper {
+    display: inline-block;
+    background-color: #29292b; 
+    padding: 10px 40px 30px 40px;
+    border-radius: 4px;
+    width: 50vw;
+    border: 1px solid #1a1a1a;
+    /*border-top: 2px solid rgba(255,255,255,0.1);*/
+    border-top: 2px solid rgba(230, 190, 140, 0.4);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+    /*border-bottom: 2px solid rgba(230, 190, 140, 0.4);*/
+    box-shadow: 1.5px 1.5px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    background-image: linear-gradient(rgba(255,255,255,0.025), rgba(0,0,0,0));
+    /*border-bottom: 1px solid #fc9;*/
+    /*border-top: 2px solid #000;*/
+  }
 </style>
 
 {#if showNav}
@@ -56,7 +71,7 @@
 <Nav/>
 <div class="home">
   <br/><br/>
-  <div class="rec">
+  <div class="rec wrapper">
     <h3>Your Records</h3>
     <a href={$url('/rec/new')}>
     <Btn btn="raised">New</Btn>
@@ -67,14 +82,14 @@
       <br/><br/>
     <p><em>Records here...</em></p>
   </div>
-  <div class="item">
+  <div class="item wrapper">
     <h3>Your Items</h3>
     <Btn btn="raised" on:click={() => {$goto('/item/new')}}>New</Btn>
     <Btn btn="raised">Open</Btn>
       <br/><br/>
     <p><em>Items here...</em></p>
   </div>
-  <div class="rule">
+  <div class="rule wrapper">
     <h3>Your Rules</h3>
     <Btn btn="raised square">New</Btn>
     <Btn btn="raised square">Open</Btn>

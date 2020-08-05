@@ -3,26 +3,29 @@ use serde::{Deserialize, Serialize};
 #[derive(Deserialize)]
 #[serde(tag = "cmd", rename_all = "camelCase")]
 pub enum Cmd {
-  Login(UserLogin),
-  Register(UserRegister),
-  GetUserData(i32),
-  ChooseFolder,
-  ClickedBtn,
+    LogEvent { event: String, payload: Option<String> },
+    Login { user: UserLogin },
+    Register { user: UserRegister },
+    GetUserData {  uid: i32 },
+    RequestData { endpoint: String, body: String, callback: String, error: String },
+    GetAllUsers,
+    ChooseFolder,
+    ClickedBtn,
 }
 
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct UserLogin {
-    username: String,
-    password: String,
+    pub username: String,
+    pub password: String,
 }
 
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct UserRegister {
-    email: String,
-    username: String,
-    password: String,
+    pub email: String,
+    pub username: String,
+    pub password: String,
 }
 
 #[derive(Serialize, Deserialize)]

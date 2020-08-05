@@ -20,10 +20,11 @@
 
 <style>
   .btns {
-    margin: 0px 0px 0px 0px;
+    margin: 0px -4px 0px -4px;
+    padding: 0px -4px 0px -4px;
     letter-spacing: 0rem;
     padding: 0px 0px 0px 0px;
-    display:table-row;
+    display:inline-block;
     position: relative;
   }
 
@@ -61,7 +62,9 @@
 
 <Nav/>
 <div class="btns">
-  <Btn btn="raised square" on:click={() => {$goto('/home')}}>Back</Btn><Btn btn="raised square">Index</Btn><Btn btn="raised square">Fore</Btn>
+  <Btn btn="raised square" on:click={() => {$goto('/home')}}>Back</Btn>
+  <Btn btn="raised square">Index</Btn>
+  <Btn btn="raised square">Fore</Btn>
 </div>
 <br/><br/>
 <h1>Add Record</h1>

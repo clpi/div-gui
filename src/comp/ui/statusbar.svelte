@@ -36,6 +36,10 @@
   float: right;
   width: 45%;
 }
+.right * {
+  float: right;
+  margin-right: 20px;
+}
 span {
   text-shadow: 0px -1px 0px rgba(0,0,0,1);
   font-size: 1rem;
@@ -69,10 +73,12 @@ p {
     {/if}
   </div>
   <div class= "middle">
+  </div>
+  <div class= "right">
     {#if $isLoggedIn}
-      <span> Currently logged in as: </span><span class="info">{ $user.username } (id: {$user.uid})</span>
+      <p><span class="info">{ $user.username } (id: {$user.uid})</span></p>
     {:else}
-    <p> Not logged in
+      <p> Not logged in </p>
     {/if}
   </div>
 </div>

@@ -13,7 +13,7 @@ reqwest="*"
 serde={version="*",features=["derive"]}
 serde_derive="*"
 serde_json="*"
-divis={path="../../server"}
+divis={path="../../div"}
 
 #chrono="*"
 #rayon="*"

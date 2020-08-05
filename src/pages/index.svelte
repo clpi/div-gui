@@ -10,6 +10,7 @@
   import { user, isLoggedIn } from '../util/store.js';
 
   let loginPromise = Promise.resolve([]);
+  let backLoginPromise = Promise.resolve([]);
   let loginSubmitted = false;
   export let userIn = {
       username: "",
@@ -20,6 +21,8 @@
     user.set(res);
     isLoggedIn.set(true);
     loginSubmitted = true;
+    /*backLoginPromise = await promisified({ cmd: 'login', user: userIn });*/
+    /*console.log(backLoginPromise);*/
     loginPromise = res;
     $goto('/home');
   }

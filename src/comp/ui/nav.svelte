@@ -1,5 +1,6 @@
 <script lang="ts">
   import { isActive, url } from '@sveltech/routify';
+  import Btn from '../../comp/ui/btn.svelte';
   /*import { isLoggedIn, user } from '../../util/store.js';*/
   import ChevronCircleUp from 'svelte-icons/fa/FaChevronCircleUp.svelte';
   import FaHome from 'svelte-icons/fa/FaHome.svelte';
