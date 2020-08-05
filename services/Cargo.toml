@@ -1,0 +1,26 @@
+[package]
+name = "services"
+version = "0.1.0"
+authors = ["Chris P <chrisp1877@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+neon="*"
+neon-serde="*"
+reqwest="*"
+serde={version="*",features=["derive"]}
+serde_derive="*"
+serde_json="*"
+divis={path="../../server"}
+
+#chrono="*"
+#rayon="*"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+incremental = false
+opt-level = "z"
