@@ -6178,13 +6178,67 @@ var app = (function () {
     const { console: console_1$1 } = globals;
     const file$h = "src/pages/dash.svelte";
 
-    // (6:2) <Btn btn="raised" on:click={() => console.log("f")}>
+    // (58:2) <Btn btn="raised" on:click={parse}>
+    function create_default_slot_2(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text("Parse");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_2.name,
+    		type: "slot",
+    		source: "(58:2) <Btn btn=\\\"raised\\\" on:click={parse}>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (60:2) <Btn btn="raised" on:click={openfile}>
+    function create_default_slot_1(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text("Open");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_1.name,
+    		type: "slot",
+    		source: "(60:2) <Btn btn=\\\"raised\\\" on:click={openfile}>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (61:2) <Btn btn="raised" on:click={savefile}>
     function create_default_slot$b(ctx) {
     	let t;
 
     	const block = {
     		c: function create() {
-    			t = text("Fetch users");
+    			t = text("Save");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -6198,7 +6252,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$b.name,
     		type: "slot",
-    		source: "(6:2) <Btn btn=\\\"raised\\\" on:click={() => console.log(\\\"f\\\")}>",
+    		source: "(61:2) <Btn btn=\\\"raised\\\" on:click={savefile}>",
     		ctx
     	});
 
@@ -6210,11 +6264,43 @@ var app = (function () {
     	let t0;
     	let h3;
     	let t2;
-    	let btn;
+    	let textarea;
+    	let t3;
+    	let btn0;
+    	let t4;
+    	let br;
+    	let t5;
+    	let btn1;
+    	let t6;
+    	let btn2;
     	let current;
+    	let mounted;
+    	let dispose;
     	nav = new Nav({ $$inline: true });
 
-    	btn = new Btn({
+    	btn0 = new Btn({
+    			props: {
+    				btn: "raised",
+    				$$slots: { default: [create_default_slot_2] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	btn0.$on("click", /*parse*/ ctx[1]);
+
+    	btn1 = new Btn({
+    			props: {
+    				btn: "raised",
+    				$$slots: { default: [create_default_slot_1] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	btn1.$on("click", /*openfile*/ ctx[2]);
+
+    	btn2 = new Btn({
     			props: {
     				btn: "raised",
     				$$slots: { default: [create_default_slot$b] },
@@ -6223,7 +6309,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	btn.$on("click", /*click_handler*/ ctx[0]);
+    	btn2.$on("click", /*savefile*/ ctx[3]);
 
     	const block = {
     		c: function create() {
@@ -6232,8 +6318,19 @@ var app = (function () {
     			h3 = element("h3");
     			h3.textContent = "Dash";
     			t2 = space();
-    			create_component(btn.$$.fragment);
-    			add_location(h3, file$h, 4, 2, 119);
+    			textarea = element("textarea");
+    			t3 = space();
+    			create_component(btn0.$$.fragment);
+    			t4 = space();
+    			br = element("br");
+    			t5 = space();
+    			create_component(btn1.$$.fragment);
+    			t6 = space();
+    			create_component(btn2.$$.fragment);
+    			add_location(h3, file$h, 55, 2, 2018);
+    			attr_dev(textarea, "class", "input svelte-5p9j2f");
+    			add_location(textarea, file$h, 56, 2, 2034);
+    			add_location(br, file$h, 58, 2, 2139);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6243,27 +6340,63 @@ var app = (function () {
     			insert_dev(target, t0, anchor);
     			insert_dev(target, h3, anchor);
     			insert_dev(target, t2, anchor);
-    			mount_component(btn, target, anchor);
+    			insert_dev(target, textarea, anchor);
+    			set_input_value(textarea, /*text*/ ctx[0]);
+    			insert_dev(target, t3, anchor);
+    			mount_component(btn0, target, anchor);
+    			insert_dev(target, t4, anchor);
+    			insert_dev(target, br, anchor);
+    			insert_dev(target, t5, anchor);
+    			mount_component(btn1, target, anchor);
+    			insert_dev(target, t6, anchor);
+    			mount_component(btn2, target, anchor);
     			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(textarea, "input", /*textarea_input_handler*/ ctx[4]);
+    				mounted = true;
+    			}
     		},
     		p: function update(ctx, [dirty]) {
-    			const btn_changes = {};
-
-    			if (dirty & /*$$scope*/ 2) {
-    				btn_changes.$$scope = { dirty, ctx };
+    			if (dirty & /*text*/ 1) {
+    				set_input_value(textarea, /*text*/ ctx[0]);
     			}
 
-    			btn.$set(btn_changes);
+    			const btn0_changes = {};
+
+    			if (dirty & /*$$scope*/ 64) {
+    				btn0_changes.$$scope = { dirty, ctx };
+    			}
+
+    			btn0.$set(btn0_changes);
+    			const btn1_changes = {};
+
+    			if (dirty & /*$$scope*/ 64) {
+    				btn1_changes.$$scope = { dirty, ctx };
+    			}
+
+    			btn1.$set(btn1_changes);
+    			const btn2_changes = {};
+
+    			if (dirty & /*$$scope*/ 64) {
+    				btn2_changes.$$scope = { dirty, ctx };
+    			}
+
+    			btn2.$set(btn2_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(nav.$$.fragment, local);
-    			transition_in(btn.$$.fragment, local);
+    			transition_in(btn0.$$.fragment, local);
+    			transition_in(btn1.$$.fragment, local);
+    			transition_in(btn2.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(nav.$$.fragment, local);
-    			transition_out(btn.$$.fragment, local);
+    			transition_out(btn0.$$.fragment, local);
+    			transition_out(btn1.$$.fragment, local);
+    			transition_out(btn2.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -6271,7 +6404,17 @@ var app = (function () {
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(h3);
     			if (detaching) detach_dev(t2);
-    			destroy_component(btn, detaching);
+    			if (detaching) detach_dev(textarea);
+    			if (detaching) detach_dev(t3);
+    			destroy_component(btn0, detaching);
+    			if (detaching) detach_dev(t4);
+    			if (detaching) detach_dev(br);
+    			if (detaching) detach_dev(t5);
+    			destroy_component(btn1, detaching);
+    			if (detaching) detach_dev(t6);
+    			destroy_component(btn2, detaching);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
@@ -6287,6 +6430,72 @@ var app = (function () {
     }
 
     function instance$j($$self, $$props, $$invalidate) {
+    	var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+    		function adopt(value) {
+    			return value instanceof P
+    			? value
+    			: new P(function (resolve) {
+    						resolve(value);
+    					});
+    		}
+
+    		return new (P || (P = Promise))(function (resolve, reject) {
+    				function fulfilled(value) {
+    					try {
+    						step(generator.next(value));
+    					} catch(e) {
+    						reject(e);
+    					}
+    				}
+
+    				function rejected(value) {
+    					try {
+    						step(generator["throw"](value));
+    					} catch(e) {
+    						reject(e);
+    					}
+    				}
+
+    				function step(result) {
+    					result.done
+    					? resolve(result.value)
+    					: adopt(result.value).then(fulfilled, rejected);
+    				}
+
+    				step((generator = generator.apply(thisArg, _arguments || [])).next());
+    			});
+    	};
+
+    	let text = "";
+
+    	let parse = () => {
+    		o({ cmd: "parseText", text });
+    	};
+
+    	let openfile = () => __awaiter(void 0, void 0, void 0, function* () {
+    		let path = yield n$1().then(path => path.toString()).catch(err => console.error(err));
+    		let opn = yield a({ cmd: "openFile", path });
+    		console.log(opn.toString());
+    	});
+
+    	let savefile = () => __awaiter(void 0, void 0, void 0, function* () {
+    		let path = yield r$1().then(res => res.toString()).catch(err => console.error(err));
+    		let sve = yield a({ cmd: "saveFile", path, data: text });
+    		console.log(sve.toString());
+    	});
+
+    	window.addEventListener("open", data => {
+    		console.log("Hello, opened" + data);
+    	});
+
+    	document.addEventListener("open", data => {
+    		console.log("Hello, opened" + data);
+    	});
+
+    	document.addEventListener("save", () => {
+    		console.log("Hello, saved");
+    	});
+
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -6295,9 +6504,39 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("Dash", $$slots, []);
-    	const click_handler = () => console.log("f");
-    	$$self.$capture_state = () => ({ Nav, Btn });
-    	return [click_handler];
+
+    	function textarea_input_handler() {
+    		text = this.value;
+    		$$invalidate(0, text);
+    	}
+
+    	$$self.$capture_state = () => ({
+    		__awaiter,
+    		Nav,
+    		Btn,
+    		invoke: o,
+    		promisified: a,
+    		open: n$1,
+    		save: r$1,
+    		text,
+    		parse,
+    		openfile,
+    		savefile
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("__awaiter" in $$props) __awaiter = $$props.__awaiter;
+    		if ("text" in $$props) $$invalidate(0, text = $$props.text);
+    		if ("parse" in $$props) $$invalidate(1, parse = $$props.parse);
+    		if ("openfile" in $$props) $$invalidate(2, openfile = $$props.openfile);
+    		if ("savefile" in $$props) $$invalidate(3, savefile = $$props.savefile);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [text, parse, openfile, savefile, textarea_input_handler];
     }
 
     class Dash extends SvelteComponentDev {
@@ -6367,7 +6606,7 @@ var app = (function () {
     }
 
     // (128:6) <Btn btn="raised square">
-    function create_default_slot_2(ctx) {
+    function create_default_slot_2$1(ctx) {
     	let t;
     	let div;
     	let fachalkboard;
@@ -6406,7 +6645,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2.name,
+    		id: create_default_slot_2$1.name,
     		type: "slot",
     		source: "(128:6) <Btn btn=\\\"raised square\\\">",
     		ctx
@@ -6416,7 +6655,7 @@ var app = (function () {
     }
 
     // (164:6) <Btn btn="raised square">
-    function create_default_slot_1(ctx) {
+    function create_default_slot_1$1(ctx) {
     	let t;
     	let div;
     	let fafileimport;
@@ -6455,7 +6694,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1.name,
+    		id: create_default_slot_1$1.name,
     		type: "slot",
     		source: "(164:6) <Btn btn=\\\"raised square\\\">",
     		ctx
@@ -6555,7 +6794,7 @@ var app = (function () {
     	btn1 = new Btn({
     			props: {
     				btn: "raised square",
-    				$$slots: { default: [create_default_slot_2] },
+    				$$slots: { default: [create_default_slot_2$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -6564,7 +6803,7 @@ var app = (function () {
     	btn2 = new Btn({
     			props: {
     				btn: "raised square",
-    				$$slots: { default: [create_default_slot_1] },
+    				$$slots: { default: [create_default_slot_1$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -6918,7 +7157,7 @@ var app = (function () {
     }
 
     // (139:8) <Btn btn="raised grad">
-    function create_default_slot_2$1(ctx) {
+    function create_default_slot_2$2(ctx) {
     	let t;
 
     	const block = {
@@ -6935,7 +7174,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$1.name,
+    		id: create_default_slot_2$2.name,
     		type: "slot",
     		source: "(139:8) <Btn btn=\\\"raised grad\\\">",
     		ctx
@@ -6945,7 +7184,7 @@ var app = (function () {
     }
 
     // (148:8) <Btn btn="raised">
-    function create_default_slot_1$1(ctx) {
+    function create_default_slot_1$2(ctx) {
     	let t;
 
     	const block = {
@@ -6962,7 +7201,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$1.name,
+    		id: create_default_slot_1$2.name,
     		type: "slot",
     		source: "(148:8) <Btn btn=\\\"raised\\\">",
     		ctx
@@ -7054,7 +7293,7 @@ var app = (function () {
     	btn3 = new Btn({
     			props: {
     				btn: "raised grad",
-    				$$slots: { default: [create_default_slot_2$1] },
+    				$$slots: { default: [create_default_slot_2$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -7063,7 +7302,7 @@ var app = (function () {
     	btn4 = new Btn({
     			props: {
     				btn: "raised",
-    				$$slots: { default: [create_default_slot_1$1] },
+    				$$slots: { default: [create_default_slot_1$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -7586,7 +7825,7 @@ var app = (function () {
     }
 
     // (90:4) <Btn btn="raised square">
-    function create_default_slot_2$2(ctx) {
+    function create_default_slot_2$3(ctx) {
     	let t;
 
     	const block = {
@@ -7603,7 +7842,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$2.name,
+    		id: create_default_slot_2$3.name,
     		type: "slot",
     		source: "(90:4) <Btn btn=\\\"raised square\\\">",
     		ctx
@@ -7613,7 +7852,7 @@ var app = (function () {
     }
 
     // (91:4) <Btn btn="raised square">
-    function create_default_slot_1$2(ctx) {
+    function create_default_slot_1$3(ctx) {
     	let t;
 
     	const block = {
@@ -7630,7 +7869,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$2.name,
+    		id: create_default_slot_1$3.name,
     		type: "slot",
     		source: "(91:4) <Btn btn=\\\"raised square\\\">",
     		ctx
@@ -7797,7 +8036,7 @@ var app = (function () {
     	btn5 = new Btn({
     			props: {
     				btn: "raised square",
-    				$$slots: { default: [create_default_slot_2$2] },
+    				$$slots: { default: [create_default_slot_2$3] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -7806,7 +8045,7 @@ var app = (function () {
     	btn6 = new Btn({
     			props: {
     				btn: "raised square",
-    				$$slots: { default: [create_default_slot_1$2] },
+    				$$slots: { default: [create_default_slot_1$3] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -8576,7 +8815,7 @@ var app = (function () {
     	btn0 = new Btn({
     			props: {
     				btn: "outline",
-    				$$slots: { default: [create_default_slot_1$3] },
+    				$$slots: { default: [create_default_slot_1$4] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -8844,7 +9083,7 @@ var app = (function () {
     }
 
     // (113:8) <Btn btn="outline" >
-    function create_default_slot_1$3(ctx) {
+    function create_default_slot_1$4(ctx) {
     	let t;
 
     	const block = {
@@ -8861,7 +9100,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$3.name,
+    		id: create_default_slot_1$4.name,
     		type: "slot",
     		source: "(113:8) <Btn btn=\\\"outline\\\" >",
     		ctx
@@ -14178,7 +14417,7 @@ var app = (function () {
     }
 
     // (86:5) <Btn btn="raised square">
-    function create_default_slot_2$3(ctx) {
+    function create_default_slot_2$4(ctx) {
     	let t;
 
     	const block = {
@@ -14195,7 +14434,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$3.name,
+    		id: create_default_slot_2$4.name,
     		type: "slot",
     		source: "(86:5) <Btn btn=\\\"raised square\\\">",
     		ctx
@@ -14245,7 +14484,7 @@ var app = (function () {
     }
 
     // (106:2) <Btn btn="raised">
-    function create_default_slot_1$4(ctx) {
+    function create_default_slot_1$5(ctx) {
     	let t;
 
     	const block = {
@@ -14262,7 +14501,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$4.name,
+    		id: create_default_slot_1$5.name,
     		type: "slot",
     		source: "(106:2) <Btn btn=\\\"raised\\\">",
     		ctx
@@ -14366,7 +14605,7 @@ var app = (function () {
     	btn2 = new Btn({
     			props: {
     				btn: "raised square",
-    				$$slots: { default: [create_default_slot_2$3] },
+    				$$slots: { default: [create_default_slot_2$4] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -14391,7 +14630,7 @@ var app = (function () {
     	btn3 = new Btn({
     			props: {
     				btn: "raised",
-    				$$slots: { default: [create_default_slot_1$4] },
+    				$$slots: { default: [create_default_slot_1$5] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15101,7 +15340,7 @@ var app = (function () {
     }
 
     // (74:2) <Btn btn="raised square">
-    function create_default_slot_2$4(ctx) {
+    function create_default_slot_2$5(ctx) {
     	let t;
 
     	const block = {
@@ -15118,7 +15357,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$4.name,
+    		id: create_default_slot_2$5.name,
     		type: "slot",
     		source: "(74:2) <Btn btn=\\\"raised square\\\">",
     		ctx
@@ -15168,7 +15407,7 @@ var app = (function () {
     }
 
     // (93:2) <Btn btn="raised">
-    function create_default_slot_1$5(ctx) {
+    function create_default_slot_1$6(ctx) {
     	let t;
 
     	const block = {
@@ -15185,7 +15424,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$5.name,
+    		id: create_default_slot_1$6.name,
     		type: "slot",
     		source: "(93:2) <Btn btn=\\\"raised\\\">",
     		ctx
@@ -15288,7 +15527,7 @@ var app = (function () {
     	btn2 = new Btn({
     			props: {
     				btn: "raised square",
-    				$$slots: { default: [create_default_slot_2$4] },
+    				$$slots: { default: [create_default_slot_2$5] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15305,7 +15544,7 @@ var app = (function () {
     	btn3 = new Btn({
     			props: {
     				btn: "raised",
-    				$$slots: { default: [create_default_slot_1$5] },
+    				$$slots: { default: [create_default_slot_1$6] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15743,11 +15982,11 @@ var app = (function () {
 
     function get_each_context$7(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[8] = list[i];
+    	child_ctx[9] = list[i];
     	return child_ctx;
     }
 
-    // (72:0) <Btn btn="filled" on:click={getUsers}>
+    // (75:0) <Btn btn="filled" on:click={getUsers}>
     function create_default_slot$j(ctx) {
     	let t;
 
@@ -15767,17 +16006,17 @@ var app = (function () {
     		block,
     		id: create_default_slot$j.name,
     		type: "slot",
-    		source: "(72:0) <Btn btn=\\\"filled\\\" on:click={getUsers}>",
+    		source: "(75:0) <Btn btn=\\\"filled\\\" on:click={getUsers}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (92:2) {:catch err}
+    // (95:2) {:catch err}
     function create_catch_block$1(ctx) {
     	let p;
-    	let t0_value = /*err*/ ctx[11] + "";
+    	let t0_value = /*err*/ ctx[12] + "";
     	let t0;
     	let t1;
 
@@ -15786,7 +16025,7 @@ var app = (function () {
     			p = element("p");
     			t0 = text(t0_value);
     			t1 = text(" - Something happened. Couldn't get users");
-    			add_location(p, file$z, 92, 4, 2805);
+    			add_location(p, file$z, 95, 4, 2862);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -15794,7 +16033,7 @@ var app = (function () {
     			append_dev(p, t1);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*userPromise*/ 1 && t0_value !== (t0_value = /*err*/ ctx[11] + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*userPromise*/ 1 && t0_value !== (t0_value = /*err*/ ctx[12] + "")) set_data_dev(t0, t0_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(p);
@@ -15805,14 +16044,14 @@ var app = (function () {
     		block,
     		id: create_catch_block$1.name,
     		type: "catch",
-    		source: "(92:2) {:catch err}",
+    		source: "(95:2) {:catch err}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (76:2) {:then users}
+    // (79:2) {:then users}
     function create_then_block$1(ctx) {
     	let if_block_anchor;
     	let if_block = /*submittedUsers*/ ctx[1] && create_if_block$9(ctx);
@@ -15850,17 +16089,17 @@ var app = (function () {
     		block,
     		id: create_then_block$1.name,
     		type: "then",
-    		source: "(76:2) {:then users}",
+    		source: "(79:2) {:then users}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (77:4) {#if submittedUsers}
+    // (80:4) {#if submittedUsers}
     function create_if_block$9(ctx) {
     	let each_1_anchor;
-    	let each_value = /*users*/ ctx[7];
+    	let each_value = /*users*/ ctx[8];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -15885,7 +16124,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*userPromise*/ 1) {
-    				each_value = /*users*/ ctx[7];
+    				each_value = /*users*/ ctx[8];
     				validate_each_argument(each_value);
     				let i;
 
@@ -15918,39 +16157,39 @@ var app = (function () {
     		block,
     		id: create_if_block$9.name,
     		type: "if",
-    		source: "(77:4) {#if submittedUsers}",
+    		source: "(80:4) {#if submittedUsers}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (78:6) {#each users as user}
+    // (81:6) {#each users as user}
     function create_each_block$7(ctx) {
     	let div;
     	let ul;
     	let h3;
-    	let t0_value = /*user*/ ctx[8].username + "";
+    	let t0_value = /*user*/ ctx[9].username + "";
     	let t0;
     	let t1;
     	let li0;
     	let p0;
-    	let t2_value = /*user*/ ctx[8].id + "";
+    	let t2_value = /*user*/ ctx[9].id + "";
     	let t2;
     	let t3;
     	let li1;
     	let p1;
-    	let t4_value = /*user*/ ctx[8].username + "";
+    	let t4_value = /*user*/ ctx[9].username + "";
     	let t4;
     	let t5;
     	let li2;
     	let p2;
-    	let t6_value = /*user*/ ctx[8].email + "";
+    	let t6_value = /*user*/ ctx[9].email + "";
     	let t6;
     	let t7;
     	let li3;
     	let p3;
-    	let t8_value = /*user*/ ctx[8].createdAt + "";
+    	let t8_value = /*user*/ ctx[9].createdAt + "";
     	let t8;
     	let t9;
 
@@ -15978,22 +16217,22 @@ var app = (function () {
     			t8 = text(t8_value);
     			t9 = space();
     			attr_dev(h3, "class", "svelte-1dp8po9");
-    			add_location(h3, file$z, 80, 10, 2548);
-    			add_location(p0, file$z, 81, 14, 2587);
+    			add_location(h3, file$z, 83, 10, 2605);
+    			add_location(p0, file$z, 84, 14, 2644);
     			attr_dev(li0, "class", "svelte-1dp8po9");
-    			add_location(li0, file$z, 81, 10, 2583);
-    			add_location(p1, file$z, 82, 14, 2623);
+    			add_location(li0, file$z, 84, 10, 2640);
+    			add_location(p1, file$z, 85, 14, 2680);
     			attr_dev(li1, "class", "svelte-1dp8po9");
-    			add_location(li1, file$z, 82, 10, 2619);
-    			add_location(p2, file$z, 83, 14, 2665);
+    			add_location(li1, file$z, 85, 10, 2676);
+    			add_location(p2, file$z, 86, 14, 2722);
     			attr_dev(li2, "class", "svelte-1dp8po9");
-    			add_location(li2, file$z, 83, 10, 2661);
-    			add_location(p3, file$z, 84, 14, 2704);
+    			add_location(li2, file$z, 86, 10, 2718);
+    			add_location(p3, file$z, 87, 14, 2761);
     			attr_dev(li3, "class", "svelte-1dp8po9");
-    			add_location(li3, file$z, 84, 10, 2700);
-    			add_location(ul, file$z, 79, 8, 2533);
+    			add_location(li3, file$z, 87, 10, 2757);
+    			add_location(ul, file$z, 82, 8, 2590);
     			attr_dev(div, "class", "user-card svelte-1dp8po9");
-    			add_location(div, file$z, 78, 6, 2501);
+    			add_location(div, file$z, 81, 6, 2558);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -16019,11 +16258,11 @@ var app = (function () {
     			append_dev(div, t9);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*userPromise*/ 1 && t0_value !== (t0_value = /*user*/ ctx[8].username + "")) set_data_dev(t0, t0_value);
-    			if (dirty & /*userPromise*/ 1 && t2_value !== (t2_value = /*user*/ ctx[8].id + "")) set_data_dev(t2, t2_value);
-    			if (dirty & /*userPromise*/ 1 && t4_value !== (t4_value = /*user*/ ctx[8].username + "")) set_data_dev(t4, t4_value);
-    			if (dirty & /*userPromise*/ 1 && t6_value !== (t6_value = /*user*/ ctx[8].email + "")) set_data_dev(t6, t6_value);
-    			if (dirty & /*userPromise*/ 1 && t8_value !== (t8_value = /*user*/ ctx[8].createdAt + "")) set_data_dev(t8, t8_value);
+    			if (dirty & /*userPromise*/ 1 && t0_value !== (t0_value = /*user*/ ctx[9].username + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*userPromise*/ 1 && t2_value !== (t2_value = /*user*/ ctx[9].id + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*userPromise*/ 1 && t4_value !== (t4_value = /*user*/ ctx[9].username + "")) set_data_dev(t4, t4_value);
+    			if (dirty & /*userPromise*/ 1 && t6_value !== (t6_value = /*user*/ ctx[9].email + "")) set_data_dev(t6, t6_value);
+    			if (dirty & /*userPromise*/ 1 && t8_value !== (t8_value = /*user*/ ctx[9].createdAt + "")) set_data_dev(t8, t8_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
@@ -16034,14 +16273,14 @@ var app = (function () {
     		block,
     		id: create_each_block$7.name,
     		type: "each",
-    		source: "(78:6) {#each users as user}",
+    		source: "(81:6) {#each users as user}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (74:22)      <p>Getting users...</p>   {:then users}
+    // (77:22)      <p>Getting users...</p>   {:then users}
     function create_pending_block$1(ctx) {
     	let p;
 
@@ -16049,7 +16288,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "Getting users...";
-    			add_location(p, file$z, 74, 4, 2402);
+    			add_location(p, file$z, 77, 4, 2459);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -16064,7 +16303,7 @@ var app = (function () {
     		block,
     		id: create_pending_block$1.name,
     		type: "pending",
-    		source: "(74:22)      <p>Getting users...</p>   {:then users}",
+    		source: "(77:22)      <p>Getting users...</p>   {:then users}",
     		ctx
     	});
 
@@ -16099,8 +16338,8 @@ var app = (function () {
     		pending: create_pending_block$1,
     		then: create_then_block$1,
     		catch: create_catch_block$1,
-    		value: 7,
-    		error: 11
+    		value: 8,
+    		error: 12
     	};
 
     	handle_promise(promise = /*userPromise*/ ctx[0], info);
@@ -16132,7 +16371,7 @@ var app = (function () {
     			ctx = new_ctx;
     			const btn_changes = {};
 
-    			if (dirty & /*$$scope*/ 4096) {
+    			if (dirty & /*$$scope*/ 8192) {
     				btn_changes.$$scope = { dirty, ctx };
     			}
 
@@ -16141,7 +16380,7 @@ var app = (function () {
 
     			if (dirty & /*userPromise*/ 1 && promise !== (promise = /*userPromise*/ ctx[0]) && handle_promise(promise, info)) ; else {
     				const child_ctx = ctx.slice();
-    				child_ctx[7] = info.resolved;
+    				child_ctx[8] = info.resolved;
     				info.block.p(child_ctx, dirty);
     			}
     		},
@@ -16228,6 +16467,10 @@ var app = (function () {
     		});
     	}
 
+    	function test() {
+    		o({ cmd: "chooseFolder" });
+    	}
+
     	/*async function success(): Promise<JSON> { return Promise.resolve(JSON) }*/
     	function getUsers() {
     		return __awaiter(this, void 0, void 0, function* () {
@@ -16280,6 +16523,7 @@ var app = (function () {
     		success,
     		n,
     		fail,
+    		test,
     		getUsers
     	});
 
@@ -16316,7 +16560,7 @@ var app = (function () {
     const file$A = "src/pages/signup.svelte";
 
     // (94:2) <Btn btn="raised">
-    function create_default_slot_1$6(ctx) {
+    function create_default_slot_1$7(ctx) {
     	let t;
 
     	const block = {
@@ -16333,7 +16577,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$6.name,
+    		id: create_default_slot_1$7.name,
     		type: "slot",
     		source: "(94:2) <Btn btn=\\\"raised\\\">",
     		ctx
@@ -16580,7 +16824,7 @@ var app = (function () {
     	btn0 = new Btn({
     			props: {
     				btn: "raised",
-    				$$slots: { default: [create_default_slot_1$6] },
+    				$$slots: { default: [create_default_slot_1$7] },
     				$$scope: { ctx }
     			},
     			$$inline: true

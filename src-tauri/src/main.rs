@@ -27,6 +27,8 @@ fn main() {
     .setup(|webview, _source| {
         let mut webview = webview.as_mut();
         let mut webview_clone = webview.clone();
+        webview.clone().dispatch(move |w| {
+        }).unwrap();
         tauri::event::listen("store-js".to_string(), move |msg| {
             println!("Got event: {:?}", msg);
             let reply = Response { data: "Msg received".to_string() };

@@ -12,6 +12,9 @@
   let n = Promise.resolve([]);
   /*let promis = window.__TAURI_INVOKE_HANDLER__.tauri.promisified;*/
   async function fail(): Promise<JSON> { return Promise.resolve(JSON) }
+  function test() {
+    invoke({ cmd: 'chooseFolder' });  
+  }
   /*async function success(): Promise<JSON> { return Promise.resolve(JSON) }*/
   async function getUsers(): Promise<JSON> {
     execute('getAllUsers', []);

@@ -1,3 +1,4 @@
+use services::*;
 use reqwest::{RequestBuilder, Client, Request};
 use tokio::*;
 use crate::cmd::{Cmd, Cmd::*};
@@ -59,6 +60,13 @@ pub fn handle_cmd(webview:&mut Webview, cmd: Cmd) -> Result<(), String> {
                 error,
             )
         },
+        ParseText { text } => {
+            tauri::spawn(move || {
+                let x = services::parse(text).unwrap();
+                let p = 
+                println!("{}", x);
+            })
+        }
         RequestData { endpoint, body, callback, error } => {
             tauri::execute_promise(webview, move || {
                 println!("Requesting {} with {:?}", endpoint, body);
@@ -73,10 +81,29 @@ pub fn handle_cmd(webview:&mut Webview, cmd: Cmd) -> Result<(), String> {
                 callback, error
             )
         }
+        OpenFile { path } => {
+            tauri::execute_promise(webview, move || {
+                let file = read_to_string(&path).unwrap();
+                tauri::api::notification::Notification::new()
+                    .body("Opened file").title("Opened file").show().unwrap();
+                println!("{}", file.clone());
+                Ok(file.clone())
+            }, "open".to_string(), "error".to_string());
+        }
+        SaveFile { path, data } => {
+            tauri::execute_promise(webview, move || {
+                tauri::api::notification::Notification::new()
+                    .body("Saved file").title("Saved file").show().unwrap();
+                let file = write(path, data).unwrap();
+                Ok(())
+            }, "save".to_string(), "error".to_string());
+            println!("Wrote to");
+        }
         PageChanged { uid } => {
-            tauri::api::dialog::message("Hello", format!("susp {}", uid));
-            tauri::api::notification::Notification::new()
-                .body("Hello").title("Sup").show().unwrap();
+            //tauri::api::dialog::message("Hello", format!("susp {}", uid));
+            //tauri::api::notification::Notification::new()
+                //.body("Hello").title("Sup").show().unwrap();
+            println!("Page changed");
         }
         ChooseFolder => {
             let x = make_request(HttpRequestBuilder::new("GET", "http://localhost:3001/api/all").build()).unwrap().to_string();

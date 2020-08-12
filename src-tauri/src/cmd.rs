@@ -14,7 +14,10 @@ pub enum Cmd {
     GetAllUsers { callback: String, error: String },
     AddRecord { record: Record },
     AddItem { item: Item },
+    ParseText { text: String },
     ChooseFolder,
+    OpenFile { path: String },
+    SaveFile { path: String, data: String },
     ClickedBtn,
 }
 

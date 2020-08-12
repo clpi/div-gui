@@ -16,8 +16,7 @@ tauri = { version = "0.9", features = [ "all-api", "cli" ] }
 common = { path = "../../back/common/" }
 reqwest = "*"
 services = { path = "../services/" }
-tokio={version="0.2", features=["full"]}
-
+tokio = { version = "0.2", features = [ "full" ] }
 
 [target."cfg(windows)".build-dependencies]
 winres = "0.1"
