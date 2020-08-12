@@ -2,10 +2,29 @@
   import { getAllUsers } from '../util/calls';
   import Btn from '../comp/ui/btn.svelte';
   import Nav from '../comp/ui/nav.svelte';
+  import { invoke, promisified } from 'tauri/api/tauri';
+  import { listen, emit } from 'tauri/api/event';
+  import { execute } from 'tauri/api/process';
 
   let userPromise = Promise.resolve([]);
   let submittedUsers: boolean = false;
+  let success = Promise.resolve([]);
+  let n = Promise.resolve([]);
+  /*let promis = window.__TAURI_INVOKE_HANDLER__.tauri.promisified;*/
+  async function fail(): Promise<JSON> { return Promise.resolve(JSON) }
+  /*async function success(): Promise<JSON> { return Promise.resolve(JSON) }*/
   async function getUsers(): Promise<JSON> {
+    execute('getAllUsers', []);
+    promisified({
+      cmd: "getAllUsers",
+      callback: "userPromise",
+      error: "fail",
+    }).then(response => {
+      console.log(response);
+      return response;
+    }).catch(err => {
+      console.error(err);
+    });
     submittedUsers = true;
     const res = await getAllUsers()
       .catch(err=>{

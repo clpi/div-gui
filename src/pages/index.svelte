@@ -17,6 +17,7 @@
       password: ""
   };
   const handleSubmit = async () => {
+    emit('login', 'login-payload')
     let res = await loginUser(userIn);
     user.set(res);
     isLoggedIn.set(true);

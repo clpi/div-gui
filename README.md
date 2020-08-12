@@ -9,4 +9,7 @@
 
 - to allow connections from other computers: ``--host 0.0.0.0`.
 - for spa:  `"start": "sirv public --single"`
+- to add:
+    - [ ] svelte moveable?
+    - [ ] xstate
 

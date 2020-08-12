@@ -161,6 +161,8 @@ li {
     </a>
   </li>
     -->
+  </div>
+  <div class="right">
   <li class="link right-link nav-btn" on:click={open_space}>
     <a href={$url('/profile')}>
       <Btn btn="raised square">

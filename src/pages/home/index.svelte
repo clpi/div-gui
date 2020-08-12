@@ -72,27 +72,25 @@
 <div class="home">
   <br/><br/>
   <div class="rec wrapper">
-    <h3>Your Records</h3>
-    <a href={$url('/rec/new')}>
-    <Btn btn="raised">New</Btn>
-    </a>
-    <a href={$url('/rec')}>
-    <Btn btn="raised">Open</Btn>
-    </a>
+    <a href={$url("./rec")}><h3>Your Records</h3></a>
+    <a href={$url('/rec/new')}><Btn btn="raised">New</Btn></a>
+    <a href={$url('/rec')}><Btn btn="raised">Open</Btn></a>
       <br/><br/>
     <p><em>Records here...</em></p>
   </div>
   <div class="item wrapper">
-    <h3>Your Items</h3>
+    <a href={$url("./item")}><h3>Your Items</h3></a>
     <Btn btn="raised" on:click={() => {$goto('/item/new')}}>New</Btn>
-    <Btn btn="raised">Open</Btn>
+    <Btn btn="raised" on:click={() => {$goto('/item')}}>Open</Btn>
+    <Btn btn="raised" on:click={() => {$goto('/item')}}>Stats</Btn>
       <br/><br/>
     <p><em>Items here...</em></p>
   </div>
   <div class="rule wrapper">
-    <h3>Your Rules</h3>
+    <a href={$url("./rule")}><h3>Your Rules</h3></a>
     <Btn btn="raised square">New</Btn>
     <Btn btn="raised square">Open</Btn>
+    <Btn btn="raised square" on:click={() => {$goto('/item')}}>Edit</Btn>
       <br/><br/>
     <p><em>Rules here...</em></p>
   </div>
