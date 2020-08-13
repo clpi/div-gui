@@ -1,4 +1,5 @@
-use services::*;
+use services::models::{UserLogin, UserRegister};
+use common::models::{User, Item, Record};
 use reqwest::{RequestBuilder, Client, Request};
 use tokio::*;
 use crate::cmd::{Cmd, Cmd::*};
@@ -63,8 +64,7 @@ pub fn handle_cmd(webview:&mut Webview, cmd: Cmd) -> Result<(), String> {
         ParseText { text } => {
             tauri::spawn(move || {
                 let x = services::parse(text).unwrap();
-                let p = 
-                println!("{}", x);
+                println!("From rust: {}", x);
             })
         }
         RequestData { endpoint, body, callback, error } => {
@@ -98,6 +98,15 @@ pub fn handle_cmd(webview:&mut Webview, cmd: Cmd) -> Result<(), String> {
                 Ok(())
             }, "save".to_string(), "error".to_string());
             println!("Wrote to");
+        }
+        InputUpdated { input } => {
+            tauri::execute_promise(webview, move || {
+                let input = services::predict_next(input).unwrap();
+                Ok(input)
+            },
+            "callback".to_string(), "error".to_string()
+            )
+
         }
         PageChanged { uid } => {
             //tauri::api::dialog::message("Hello", format!("susp {}", uid));

@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
-use common::models::{User, Record, Item};
+use services::models::{UserLogin, UserRegister};
+use common::models::{User, Item,  Record};
 use crate::types::*;
 
 #[derive(Deserialize)]
@@ -15,6 +16,7 @@ pub enum Cmd {
     AddRecord { record: Record },
     AddItem { item: Item },
     ParseText { text: String },
+    InputUpdated { input: String },
     ChooseFolder,
     OpenFile { path: String },
     SaveFile { path: String, data: String },

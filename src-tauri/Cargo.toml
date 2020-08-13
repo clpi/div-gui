@@ -13,8 +13,8 @@ build = "src/build.rs"
 serde_json = "1.0"
 serde = { version = "1.0", features = [ "derive" ] }
 tauri = { version = "0.9", features = [ "all-api", "cli" ] }
-common = { path = "../../back/common/" }
 reqwest = "*"
+common = { path = "../../back/common/" }
 services = { path = "../services/" }
 tokio = { version = "0.2", features = [ "full" ] }
 

@@ -18,11 +18,10 @@ neon-build = "0.4.0"
 neon = "0.4.0"
 serde = { version = "*", features = [ "derive" ] }
 serde_derive = "*"
-nom="*"
+pest="*"
 svg="*"
 plotters="*"
 rand="*"
-markov="*"
 probability="*"
 petgraph="*"
 tokio={version="0.2", features=["full"]}

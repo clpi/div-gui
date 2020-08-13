@@ -21,7 +21,16 @@
     let sve = await promisified({ cmd: 'saveFile', path: path, data: text });
     console.log(sve.toString());
   }
+  let update = async () => {
+    let change = await promisified({ cmd: 'inputChanged', input: text })
+      .then(res => res)
+      .catch(err => console.error(err));
+    console.log(change);
+  }
   window.addEventListener("open", (data) => {
+    console.log("Hello, opened" + data);
+  })
+  window.addEventListener("save", (data) => {
     console.log("Hello, opened" + data);
   })
   document.addEventListener("open", (data) => {
@@ -32,6 +41,12 @@
   });
 </script>
 <style>
+  .parse {
+    width: 100%;
+    min-width: 400px;
+  }
+  .in { 
+  }
   .input {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -39,15 +54,22 @@
     border-color: #fc9;
     font-size: 1.3rem;
     padding: 40px;
-    width: 90vw;
+    width: 80vw;
     height: 50vh;
     background: #222;
   }
 </style>
 <Nav/>
   <h3>Dash</h3>
-  <textarea class="input" bind:value={text}></textarea>
-  <Btn btn="raised" on:click={parse}>Parse</Btn>
+  <div class="in">
+    <textarea 
+      class="input" 
+      bind:value={text}
+      on:change={update}></textarea>
+  </div>
+  <div class="parse">
+    <Btn btn="raised" on:click={parse}>Parse</Btn>
+  </div>
   <br/>
   <Btn btn="raised" on:click={openfile}>Open</Btn>
   <Btn btn="raised" on:click={savefile}>Save</Btn>
