@@ -6230,7 +6230,7 @@ var app = (function () {
     const { console: console_1$1 } = globals;
     const file$h = "src/pages/dash.svelte";
 
-    // (79:4) <Btn btn="raised" on:click={parse}>
+    // (87:4) <Btn btn="raised" on:click={parse}>
     function create_default_slot_2(ctx) {
     	let t;
 
@@ -6250,14 +6250,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(79:4) <Btn btn=\\\"raised\\\" on:click={parse}>",
+    		source: "(87:4) <Btn btn=\\\"raised\\\" on:click={parse}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (82:2) <Btn btn="raised" on:click={openfile}>
+    // (90:2) <Btn btn="raised" on:click={openfile}>
     function create_default_slot_1(ctx) {
     	let t;
 
@@ -6277,14 +6277,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(82:2) <Btn btn=\\\"raised\\\" on:click={openfile}>",
+    		source: "(90:2) <Btn btn=\\\"raised\\\" on:click={openfile}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (83:2) <Btn btn="raised" on:click={savefile}>
+    // (91:2) <Btn btn="raised" on:click={savefile}>
     function create_default_slot$b(ctx) {
     	let t;
 
@@ -6304,7 +6304,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$b.name,
     		type: "slot",
-    		source: "(83:2) <Btn btn=\\\"raised\\\" on:click={savefile}>",
+    		source: "(91:2) <Btn btn=\\\"raised\\\" on:click={savefile}>",
     		ctx
     	});
 
@@ -6383,14 +6383,14 @@ var app = (function () {
     			create_component(btn1.$$.fragment);
     			t6 = space();
     			create_component(btn2.$$.fragment);
-    			add_location(h3, file$h, 70, 2, 2401);
+    			add_location(h3, file$h, 78, 2, 2723);
     			attr_dev(textarea, "class", "input svelte-1y13iep");
-    			add_location(textarea, file$h, 72, 4, 2438);
+    			add_location(textarea, file$h, 80, 4, 2760);
     			attr_dev(div0, "class", "in svelte-1y13iep");
-    			add_location(div0, file$h, 71, 2, 2417);
+    			add_location(div0, file$h, 79, 2, 2739);
     			attr_dev(div1, "class", "parse svelte-1y13iep");
-    			add_location(div1, file$h, 77, 2, 2542);
-    			add_location(br, file$h, 80, 2, 2624);
+    			add_location(div1, file$h, 85, 2, 2864);
+    			add_location(br, file$h, 88, 2, 2946);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6430,21 +6430,21 @@ var app = (function () {
 
     			const btn0_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 256) {
     				btn0_changes.$$scope = { dirty, ctx };
     			}
 
     			btn0.$set(btn0_changes);
     			const btn1_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 256) {
     				btn1_changes.$$scope = { dirty, ctx };
     			}
 
     			btn1.$set(btn1_changes);
     			const btn2_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 256) {
     				btn2_changes.$$scope = { dirty, ctx };
     			}
 
@@ -6534,12 +6534,20 @@ var app = (function () {
     	};
 
     	let text = "";
+    	let dataFrom = Promise.resolve([]);
 
-    	let parse = () => {
-    		o({ cmd: "parseText", text });
-    	};
+    	const parse = () => __awaiter(void 0, void 0, void 0, function* () {
+    		let data = a({ cmd: "parseText", text }).then(response => {
+    			console.log("From js: " + response);
+    			console.log("DataFrom: " + dataFrom);
+    		}).catch(err => {
+    			console.error(err);
+    		});
 
-    	let openfile = () => __awaiter(void 0, void 0, void 0, function* () {
+    		console.log("DataFrom: " + dataFrom);
+    	});
+
+    	const openfile = () => __awaiter(void 0, void 0, void 0, function* () {
     		let path = yield n$1().then(path => path.toString()).catch(err => console.error(err));
     		let opn = yield a({ cmd: "openFile", path });
     		console.log(opn.toString());
@@ -6595,6 +6603,7 @@ var app = (function () {
     		open: n$1,
     		save: r$1,
     		text,
+    		dataFrom,
     		parse,
     		openfile,
     		savefile,
@@ -6604,8 +6613,7 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ("__awaiter" in $$props) __awaiter = $$props.__awaiter;
     		if ("text" in $$props) $$invalidate(0, text = $$props.text);
-    		if ("parse" in $$props) $$invalidate(1, parse = $$props.parse);
-    		if ("openfile" in $$props) $$invalidate(2, openfile = $$props.openfile);
+    		if ("dataFrom" in $$props) dataFrom = $$props.dataFrom;
     		if ("savefile" in $$props) $$invalidate(3, savefile = $$props.savefile);
     		if ("update" in $$props) $$invalidate(4, update = $$props.update);
     	};

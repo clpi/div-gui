@@ -4,10 +4,18 @@
   import { invoke, promisified } from 'tauri/api/tauri';
   import { open, save } from 'tauri/api/dialog';
   let text = "";
-  let parse = () => {
-    invoke({ cmd: 'parseText', text: text });
+  let dataFrom = Promise.resolve([]);
+  const parse = async () => {
+    let data = promisified({ cmd: 'parseText', text: text })
+      .then(response => {
+        console.log("From js: " + response);
+        console.log("DataFrom: " + dataFrom);
+      }).catch(err => {
+        console.error(err);
+      });
+      console.log("DataFrom: " + dataFrom);
   }
-  let openfile = async () => {
+  const openfile = async () => {
     let path = await open()
     .then(path => path.toString())
     .catch(err=>console.error(err));

@@ -62,10 +62,11 @@ pub fn handle_cmd(webview:&mut Webview, cmd: Cmd) -> Result<(), String> {
             )
         },
         ParseText { text } => {
-            tauri::spawn(move || {
+            tauri::execute_promise(webview, move || {
                 let x = services::parse(text).unwrap();
                 println!("From rust: {}", x);
-            })
+                Ok(x)
+            }, "dataFrom".to_string(), "error".to_string());
         }
         RequestData { endpoint, body, callback, error } => {
             tauri::execute_promise(webview, move || {

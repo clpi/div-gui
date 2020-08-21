@@ -15,7 +15,15 @@
       "longDescription": "", 
       "beforeHelp": "", 
       "afterHelp": "", 
-      "args": [], 
+      "args": [
+        {
+          "name": "test",
+          "short": "t",
+          "takesValue": true,
+          "possibleValues": ["true", "false"],
+          "index": 1
+        }
+      ], 
       "subcommands": {
         "subcommand-name": {
         }

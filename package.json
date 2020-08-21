@@ -21,6 +21,7 @@
     "@rollup/plugin-typescript": "^4.0.0",
     "@sveltech/routify": "^1.9.7",
     "@tsconfig/svelte": "^1.0.0",
+    "@wasm-tool/rollup-plugin-rust": "^1.0.5",
     "rollup": "^2.3.4",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",

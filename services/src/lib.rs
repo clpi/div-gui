@@ -45,7 +45,6 @@ pub struct Ast {
 
 impl Ast {
     pub fn new() {
-        create_node!(Literal);
     }
 }
 
