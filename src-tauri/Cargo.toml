@@ -18,9 +18,6 @@ common = { path = "../../back/common/" }
 services = { path = "../services/" }
 tokio = { version = "0.2", features = [ "full" ] }
 
-#[target.'cfg(windows)'.dependencies]
-#winapi = {version = "*", features = ["shellscalingapi"]}
-
 [target."cfg(windows)".build-dependencies]
 winres = "0.1"
 
